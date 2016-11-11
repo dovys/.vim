@@ -1,3 +1,6 @@
+" A lot of things below taken from
+" https://github.com/jessfraz/.vim/blob/master/vimrc
+
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
@@ -8,22 +11,15 @@ let mapleader = "," " Remapping leader key from \ to ,
 
 " Auto switch directory to the current file dir
 autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-
-" ==================== <GoSpecific> =======================
-autocmd Filetype go setlocal ts=4 sts=4 sw=4 " 4 space long tab
 " ,r to :GoRun, ,t to :GoTest
 autocmd FileType go nmap <leader>r <Plug>(go-run)
 autocmd FileType go nmap <leader>t <Plug>(go-test)
-
-" ==================== </GoSpecific> =======================
-
-" A lot of things below taken from
-" https://github.com/jessfraz/.vim/blob/master/vimrc
+au BufNewFile,BufRead *.json setlocal expandtab ts=2 sw=2
+au BufNewFile,BufRead *.go setlocal expandtab ts=4 sw=4 sts=4
 
 set autowrite " Auto write before :make
 set autoread " Auto load the newest file version
 set number " Line numbers
-set mouse=a " Enable mouse
 set ttyfast " Faster scrolling
 set noerrorbells
 set noswapfile
@@ -34,12 +30,25 @@ set incsearch " Search while typing
 set hlsearch " Search highligting
 set ignorecase " Case insensitive search
 set smartcase " Unless you have uppercase characters
+set ttimeoutlen=50 " faster timeout for escape key and others
 
-" Force save
+nnoremap Y y$
+map :Vs :vs
+map :Sp :sp
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 nmap <leader>w :w!<cr> 
+
+let g:netrw_dirhistmax=0
+
+" Enable mouse
+if has('mouse')
+	set mouse=a
+endif
 
 " Enable autocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
-
-
+let g:neocomplete#auto_completion_start_length = 2
