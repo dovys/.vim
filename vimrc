@@ -33,13 +33,14 @@ set smartcase " Unless you have uppercase characters
 set ttimeoutlen=50 " faster timeout for escape key and others
 
 nnoremap Y y$
-map :Vs :vs
-map :Sp :sp
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+nmap :Vs :vs
+nmap :Sp :sp
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-h> <C-W>h
+nmap <C-l> <C-W>l
 nmap <leader>w :w!<cr> 
+nmap <leader>p <C-w>z
 
 let g:netrw_dirhistmax=0
 
